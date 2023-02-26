@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { bruteForce } from './components/utils';
+import { bruteForce, middleOut } from './utils';
+
 
 const Context = createContext();
 export const useProvider = () => useContext(Context);
@@ -12,7 +13,9 @@ function getInitialState() {
         result: [-1, -1],
         running: false,
         flag: false,
-        algo: bruteForce,
+        status: '',
+        algos: [bruteForce, middleOut,],
+        selectedAlgo: bruteForce,
     }
 }
 
@@ -24,6 +27,7 @@ function updateState(state, data) {
 export default function Provider({ children }) {
     const [state, setState] = useState(getInitialState());
     const update = (data) => setState(updateState(state, data));
+    const setStatus = (status) => update({ status: status });
     const run = () => {
         if (!state.running) {
             update({ result: [-1, -1], running: true, flag: !state.flag });
@@ -31,7 +35,9 @@ export default function Provider({ children }) {
     }
 
     useEffect(() => {
-        state.algo(state.word, update);
+        if (state.running) {
+            state.selectedAlgo(state.word, update, setStatus);
+        }
     }, [state.flag]);
 
     return (
