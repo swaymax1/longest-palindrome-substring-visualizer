@@ -1,9 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { useProvider } from './provider';
 import Select from 'react-select';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 export function WordRow() {
-    const { word , selected, found } = useProvider();
+    const { word, selected, found } = useProvider();
 
     if (!word.length) return (<div style={{ fontSize: 30 }}>Enter the word</div>);
     return (
@@ -30,7 +32,7 @@ export function Box({ letter, selected, inAnswer }) {
 }
 
 export function Controls() {
-    const { running, algos, run, updateApp, updateColor} = useProvider();
+    const { running, algos, run, updateApp, updateColor } = useProvider();
     const formRef = useRef();
 
     const onSubmit = e => {
@@ -41,8 +43,8 @@ export function Controls() {
 
     const onWordChange = (e) => {
         if (!running) {
-            updateApp({ word: e.target.value});
-            updateColor({found: [-1,-1]});
+            updateApp({ word: e.target.value });
+            updateColor({ found: [-1, -1], longest: [-1, -1] });
         }
     }
 
@@ -53,6 +55,7 @@ export function Controls() {
     return (
         <form onSubmit={onSubmit} ref={formRef} autoComplete={'off'}>
             <SelectAlgorithm onChange={onSelectAlgorithm} />
+            <SelectSpeed />
             <input className='input' onChange={onWordChange} name='word' type={'text'} maxLength={16} />
             <input className='submit' type={'submit'} value={'Start'} />
         </form>
@@ -86,7 +89,7 @@ export function Answer() {
 }
 
 export function Status() {
-    const { status} = useProvider();
+    const { status } = useProvider();
     return (
         <div className='status center'>
             {status}
@@ -94,7 +97,24 @@ export function Status() {
     );
 }
 
-export function SelectSpeed() {
+function SelectSpeed() {
 
-    return "hello world!";
+    const [value, setValue] = useState(50);
+    const { setDelay } = useProvider();
+    const maxDelay = 1100;
+
+    function handleSliderChange(newValue) {
+        setValue(newValue);
+        setDelay(getDelay(newValue));
+    }
+
+    function getDelay(value) {
+        return maxDelay - value * 10;
+    }
+
+    return (
+        <div style={{ "width": 200, 'marginTop': 50 }}>
+            <Slider onChange={handleSliderChange} value={value} className="speed" />
+        </div>
+    );
 }

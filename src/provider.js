@@ -1,13 +1,13 @@
 import React, { createContext, useContext, useReducer } from 'react'
 import { bruteForce, middleOut } from './utils';
-
+import { delay, isPalindrome } from './utils';
 
 const Context = createContext();
 export const useProvider = () => useContext(Context);
 
 function getInitialAppState() {
     return {
-        speed: 1,
+        delay: 300,
         word: '',
         running: false,
         status: '',
@@ -53,6 +53,10 @@ export default function Provider({ children }) {
         updateApp({ running: false });
     }
 
+    const setDelay = (delay) => {
+        updateApp({ delay: delay });
+    }
+
     const callbacks = {
         setStatus,
         setFound,
@@ -64,13 +68,12 @@ export default function Provider({ children }) {
     const run = () => {
         if (!appState.running) {
             updateApp({ running: true, found: [-1, -1] });
-            appState.selectedAlgo(appState.word, 300, callbacks);
+            appState.selectedAlgo(appState.word, appState.delay, callbacks);
         }
     }
 
-
     return (
-        <Context.Provider value={{ ...appState, ...colorState, updateApp, updateColor, run }}>
+        <Context.Provider value={{ ...appState, ...colorState, updateApp, updateColor, run, setDelay }}>
             {children}
         </Context.Provider>
     );

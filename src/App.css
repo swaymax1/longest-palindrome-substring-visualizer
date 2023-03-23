@@ -49,6 +49,7 @@ body {
 
 .center {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -102,3 +103,4 @@ body {
   top: 30px;
   margin-bottom: 20px;
 }
+

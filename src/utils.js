@@ -1,3 +1,5 @@
+
+
 export async function bruteForce(word, time, callbacks) {
     let longest = '';
     let found = [];
@@ -52,7 +54,7 @@ export async function middleOut(word, time, callbacks) {
         if (l === r) callbacks.setStatus('checking for odd length');
         else callbacks.setStatus('checking for even length');
         callbacks.setSelected(l, r);
-        await delay(time);
+        await delay(delay);
         if (l < 0 || r >= size) return '';
         while (l >= 0 && r < size && word[l] === word[r]) {
             callbacks.setSelected(l, r);
@@ -76,7 +78,7 @@ export function delay(time) {
     return new Promise((resolve) => setTimeout(resolve, time))
 }
 
-function isPalindrome(str) {
+export function isPalindrome(str) {
     str = str.toLowerCase();
     for (let i = 0; i < str.length / 2; i++) {
         if (str[i] !== str[str.length - 1 - i]) {
