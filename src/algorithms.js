@@ -26,15 +26,18 @@ export async function middleOut(word, time, callbacks) {
     let longest = 0, size = word.length, found = [];
     for (let i = 0; i < size; i++) {
         const odd = await expand(i, i);
-        const even = await expand(i, i + 1);
         const oddSize = odd[1] - odd[0] + 1;
-        const evenSize = even[1] - even[0] + 1;
         if (oddSize > longest) {
             longest = oddSize;
             found = [odd[0], odd[1]];
             callbacks.setLonger(found);
             await delay(time);
         }
+    }
+
+    for (let i = 0; i < size; i++) {
+        const even = await expand(i, i + 1);
+        const evenSize = even[1] - even[0] + 1;
         if (evenSize > longest) {
             longest = evenSize;
             found = [even[0], even[1]];
@@ -50,12 +53,19 @@ export async function middleOut(word, time, callbacks) {
     async function expand(l, r) {
         callbacks.setSelected(l, r);
         await delay(delay);
-        if (l < 0 || r >= size) return '';
-        while (l >= 0 && r < size && word[l] === word[r]) {
+        if (l < 0 || r >= size) return [-1, -1];
+        while (l >= 0 && r < size) {
             callbacks.setSelected(l, r);
+            await delay(time);
+            if (word[l] !== word[r]) {
+                callbacks.setNotFound(l, r);
+                await delay(time);
+                callbacks.setNotFound(-1, -1);
+                await delay(time);
+                break;
+            }
             l--;
             r++;
-            await delay(time);
         }
         return [l + 1, r - 1];
     }

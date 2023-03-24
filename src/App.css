@@ -38,6 +38,7 @@ body {
   padding: 5px;
   font-size: large;
   background-color: red;
+  color: inherit;
   border-radius: 4px;
   transition: background-color 0.1s ease-in-out;
 }

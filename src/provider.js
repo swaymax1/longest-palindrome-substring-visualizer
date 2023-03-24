@@ -18,6 +18,7 @@ function getInitialColorState() {
     return {
         selected: [-1, -1],
         found: [-1, -1],
+        notFound: [-1, -1],
         longest: [-1, -1],
     }
 }
@@ -31,8 +32,8 @@ export default function Provider({ children }) {
         return { ...state, ...data }
     }, getInitialColorState());
 
-    const setFound = (found) => {
-        updateColor({ found: [found[0], found[1]], selected: [-1, -1] });
+    const setNotFound = (i, j) => {
+        updateColor({ notFound: [i, j] });
     }
 
     const setSelected = (i, j) => {
@@ -48,18 +49,18 @@ export default function Provider({ children }) {
     }
 
     const setLonger = (found) => {
-        updateColor({ found: found, longest: found, selected: [-1,-1]});
+        updateColor({ found: found, longest: found, selected: [-1, -1] });
     }
 
     const callbacks = {
-        setFound,
         setSelected,
         setLonger,
+        setNotFound,
         stopRun
     };
 
     const run = () => {
-        if(appState.word.length == 0) return;
+        if (appState.word.length == 0) return;
         if (!appState.running) {
             updateApp({ running: true, found: [-1, -1] });
             appState.selectedAlgo(appState.word, appState.delay, callbacks);

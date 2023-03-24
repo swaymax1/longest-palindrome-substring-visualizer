@@ -83,7 +83,7 @@ function SelectSpeed() {
     }
 
     function getDelay(value) {
-        return 750 - value * 10;
+        return 800 - value * 10;
     }
 
     return (
