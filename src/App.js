@@ -1,31 +1,20 @@
 import './App.css';
 import React from 'react';
-import { Controls, WordRow, Answer, Title } from './components';
-import { ThemeProvider } from '@emotion/react';
-import { createTheme } from '@mui/material/styles';
+import { Title } from './components/title';
+import { Controls } from './components/controls';
+import { WordRow } from './components/word';
+import { Answer } from './components/answer';
 
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#bd0d00',
-    },
-    secondary: {
-      main: '#00ff00',
-    },
-  },
-});
 
 export default function App() {
 
   return (
-    <ThemeProvider theme={theme} >
-      <div className='container'>
-        <Title />
-        <Controls />
-        <WordRow />
-        <Answer />
-      </div>
-    </ThemeProvider >
+    <div className='container'>
+      <Title />
+      <Controls />
+      <WordRow />
+      <Answer />
+    </div>
   );
 }
+
