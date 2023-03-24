@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { useProvider } from './provider';
 import Select from 'react-select';
-import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import Slider from '@mui/material/Slider';
+import { FormControl, InputLabel } from '@mui/material';
+
 
 export function WordRow() {
     const { word, selected, found } = useProvider();
@@ -21,7 +23,7 @@ export function WordRow() {
 
 export function Box({ letter, selected, inAnswer }) {
 
-    let boxColor = 'black';
+    let boxColor = '#c8c8c8';
     if (selected) boxColor = 'grey';
     if (inAnswer) boxColor = 'green';
 
@@ -53,11 +55,11 @@ export function Controls() {
     }
 
     return (
-        <form onSubmit={onSubmit} ref={formRef} autoComplete={'off'}>
+        <form ref={formRef} autoComplete={'off'}>
             <SelectAlgorithm onChange={onSelectAlgorithm} />
             <SelectSpeed />
             <input className='input' onChange={onWordChange} name='word' type={'text'} maxLength={16} />
-            <input className='submit' type={'submit'} value={'Start'} />
+            <input type={'submit'} onClick={onSubmit} className='submit' />
         </form>
     );
 }
@@ -77,6 +79,37 @@ function SelectAlgorithm({ onChange }) {
 }
 
 
+function SelectSpeed() {
+
+    const [value, setValue] = useState(50);
+    const { setDelay, running } = useProvider();
+
+    function handleSliderChange(_, newValue) {
+        setValue(newValue);
+        setDelay(getDelay(newValue));
+    }
+
+    function getDelay(value) {
+        return 750 - value * 10;
+    }
+
+    return (
+        <div style={{ "width": 200, 'marginTop': 50 }}>
+            <Slider
+                size="small"
+                sx={{ width: 150 }}
+                defaultValue={35}
+                min={20}
+                max={50}
+                aria-label="Small"
+                color='secondary'
+                onChange={handleSliderChange}
+                disabled={running}
+            />
+        </div>
+    );
+}
+
 export function Answer() {
     const { word, longest } = useProvider();
 
@@ -88,33 +121,9 @@ export function Answer() {
     );
 }
 
-export function Status() {
-    const { status } = useProvider();
-    return (
-        <div className='status center'>
-            {status}
-        </div>
-    );
-}
-
-function SelectSpeed() {
-
-    const [value, setValue] = useState(50);
-    const { setDelay } = useProvider();
-    const maxDelay = 1100;
-
-    function handleSliderChange(newValue) {
-        setValue(newValue);
-        setDelay(getDelay(newValue));
-    }
-
-    function getDelay(value) {
-        return maxDelay - value * 10;
-    }
+export function Title() {
 
     return (
-        <div style={{ "width": 200, 'marginTop': 50 }}>
-            <Slider onChange={handleSliderChange} value={value} className="speed" />
-        </div>
+        <h1>Longest Palindrome Substring Visualizer</h1>
     );
 }

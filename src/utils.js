@@ -5,21 +5,19 @@ export async function bruteForce(word, time, callbacks) {
     let found = [];
     for (let i = 0; i < word.length; i++) {
         for (let j = i + 1; j < word.length; j++) {
-            callbacks.setStatus('');
             callbacks.setSelected(i, j);
             await delay(time);
             const subString = word.substring(i, j + 1);
             if (isPalindrome(subString) && subString.length > longest.length) {
                 longest = subString;
                 found = [i, j];
-                foundLarger(callbacks, found)
+                callbacks.setLonger(found);
                 await delay(time);
             }
+            callbacks.setSelected(-1, -1);
         }
     }
-    callbacks.setFound(found);
-    callbacks.setLongest(found);
-    callbacks.setStatus('finished');
+    callbacks.setLonger(found);;
     callbacks.stopRun();
 }
 
@@ -34,25 +32,22 @@ export async function middleOut(word, time, callbacks) {
         if (oddSize > longest) {
             longest = oddSize;
             found = [odd[0], odd[1]];
-            foundLarger(callbacks, found);
+            callbacks.setLonger(found);
             await delay(time);
         }
         if (evenSize > longest) {
             longest = evenSize;
             found = [even[0], even[1]];
-            foundLarger(callbacks, found);
+            callbacks.setLonger(found);
             await delay(time);
         }
+        callbacks.setSelected(-1, -1);
     }
 
-    callbacks.setFound(found);
-    callbacks.setLongest(found);
-    callbacks.setStatus('finished');
+    callbacks.setLonger(found);
     callbacks.stopRun();
 
     async function expand(l, r) {
-        if (l === r) callbacks.setStatus('checking for odd length');
-        else callbacks.setStatus('checking for even length');
         callbacks.setSelected(l, r);
         await delay(delay);
         if (l < 0 || r >= size) return '';
@@ -67,10 +62,41 @@ export async function middleOut(word, time, callbacks) {
 
 }
 
-function foundLarger(callbacks, found) {
-    callbacks.setFound(found);
-    callbacks.setLongest(found);
-    callbacks.setStatus('found a lager palindrome');
+export async function dynamicProgramming(word, time, callbacks) {
+    const n = word.length;
+    const matrix = Array(n).fill().map(() => Array(n).fill(false));
+    let longest = '', found = [];
+
+    for (let i = 0; i < n; i++) {
+        matrix[i][i] = true;
+        longest = word[i];
+        found = [i, i];
+        callbacks.setLonger([i, i]);
+        await delay(time);
+    }
+
+    for (let length = 2; length <= n; length++) {
+        for (let i = 0; i < n - length + 1; i++) {
+            const j = i + length - 1;
+            callbacks.setSelected(i, j);
+            await delay(time);
+
+            if (word[i] === word[j] && (length === 2 || matrix[i + 1][j - 1])) {
+                matrix[i][j] = true;
+
+                if (length > longest.length) {
+                    longest = word.substring(i, j + 1);
+                    found = [i, j];
+                    callbacks.setLonger([i, j]);
+                    await delay(time);
+                }
+            }
+        }
+    }
+
+    callbacks.setLonger(found);
+    callbacks.stopRun();
+    return longest;
 }
 
 
@@ -90,3 +116,4 @@ export function isPalindrome(str) {
 
 middleOut.algoName = 'middle out';
 bruteForce.algoName = 'brute force';
+dynamicProgramming.algoName = 'dynamic programming';

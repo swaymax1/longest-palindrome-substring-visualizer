@@ -3,6 +3,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: rgb(30, 30, 30);
+  color: whitesmoke;
 }
 
 .container {
@@ -55,7 +57,8 @@ body {
 }
 
 .box {
-  --box-color: black;
+  --box-color: #c8c8c8;
+  color: black;
   width: 70px;
   height: 70px;
   border: 1px solid var(--box-color);
@@ -86,17 +89,18 @@ body {
 
 .answer {
   position: fixed;
-  top: 350px;
+  top: 400px;
   width: 300px;
   height: 50px;
   box-sizing: border-box;
   padding: 10px;
-  border: 1px solid red;
+  border: 2px solid red;
   border-radius: 5px;
   font-size: large;
 }
 
 .select {
+  display: inline;
   padding: 10px 40px 10px 10px;
   position: relative;
   left: 40px;
@@ -104,3 +108,7 @@ body {
   margin-bottom: 20px;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+}
