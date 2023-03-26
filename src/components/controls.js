@@ -73,12 +73,9 @@ function SelectAlgorithm({ onChange }) {
 }
 
 function SelectSpeed() {
-
-    const [value, setValue] = useState(50);
-    const { setDelay, running } = useProvider();
+    const { setDelay, running, delay } = useProvider();
 
     function handleSliderChange(_, newValue) {
-        setValue(newValue);
         setDelay(getDelay(newValue));
     }
 

@@ -2,6 +2,7 @@
   "name": "longest-palindrome-substring-visualizer",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://swaymax1.github.io/longest-palindrome-substring-visualizer",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",

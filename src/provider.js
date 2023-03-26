@@ -6,7 +6,7 @@ export const useProvider = () => useContext(Context);
 
 function getInitialAppState() {
     return {
-        delay: 500,
+        delay: 450,
         word: '',
         running: false,
         algos: [bruteForce, middleOut, dynamicProgramming],

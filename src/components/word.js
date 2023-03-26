@@ -22,8 +22,8 @@ export function WordRow() {
 function Box({ letter, selected, found, notFound }) {
 
     let boxColor = '#c8c8c8';
-    if (selected) boxColor = 'grey';
-    if (found) boxColor = 'green';
+    if (selected) boxColor = 'dimgrey';
+    if (found) boxColor = '#13cf3e';
     if (notFound) boxColor = 'red';
     return (
         <div className='box center'
