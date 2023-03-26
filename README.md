@@ -1,9 +1,10 @@
 <div align="center">
 <h2>Longest Palindrome Substring (Visualizer)</h2>
 
-### Longest Palindrome Substring Finder algorithm in React
-
+### <a href="https://swaymax1.github.io/longest-palindrome-substring-visualizer">Longest Palindrome Substring Finder algorithm in React </a>
 </div>
+
+### try at https://swaymax1.github.io/longest-palindrome-substring-visualizer/
 
 ### Running in your local
 
@@ -28,3 +29,4 @@
 
 ##### Feel free to reuse or modify the code/project for your personal or professinal purposes
 ##### Raise PR for any bugs/imporvements
+#### mobile is not supported
