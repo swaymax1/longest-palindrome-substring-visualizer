@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useProvider } from '../provider';
 import Select from 'react-select';
 import 'rc-slider/assets/index.css';
@@ -73,7 +73,7 @@ function SelectAlgorithm({ onChange }) {
 }
 
 function SelectSpeed() {
-    const { setDelay, running, delay } = useProvider();
+    const { setDelay, running } = useProvider();
 
     function handleSliderChange(_, newValue) {
         setDelay(getDelay(newValue));
