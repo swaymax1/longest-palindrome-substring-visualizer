@@ -4,7 +4,7 @@
 ### <a href="https://swaymax1.github.io/longest-palindrome-substring-visualizer">Longest Palindrome Substring Finder algorithm in React </a>
 </div>
 
-### try at https://swaymax1.github.io/longest-palindrome-substring-visualizer/
+### <a href="https://swaymax1.github.io/longest-palindrome-substring-visualizer/">live demo</a>
 
 ### Running in your local
 
