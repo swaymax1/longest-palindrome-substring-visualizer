@@ -52,7 +52,7 @@ function SelectAlgorithm({ onChange }) {
             ...provided,
             color: 'black',
         }),
-        control: (provided, state) => ({
+        control: (provided, _) => ({
             ...provided,
             height: 40,
             width: 180,

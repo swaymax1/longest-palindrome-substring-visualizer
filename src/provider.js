@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from 'react'
-import { bruteForce, dynamicProgramming, middleOut } from './algorithms';
+import { twoPointers, dynamicProgramming, middleOut } from './algorithms';
 
 const Context = createContext();
 export const useProvider = () => useContext(Context);
@@ -9,7 +9,7 @@ function getInitialAppState() {
         delay: 450,
         word: '',
         running: false,
-        algos: [bruteForce, middleOut, dynamicProgramming],
+        algos: [twoPointers, middleOut, dynamicProgramming],
         selectedAlgo: bruteForce,
     }
 }

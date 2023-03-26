@@ -1,6 +1,6 @@
 
 
-export async function bruteForce(word, time, callbacks) {
+export async function twoPointers(word, time, callbacks) {
     let longest = '';
     let found = [];
     for (let i = 0; i < word.length; i++) {
@@ -124,6 +124,6 @@ export function isPalindrome(str) {
     return true;
 }
 
-middleOut.algoName = 'middle out';
-bruteForce.algoName = 'brute force';
-dynamicProgramming.algoName = 'dynamic programming';
+middleOut.algoName = 'Middle out';
+twoPointers.algoName = 'Two pointers';
+dynamicProgramming.algoName = 'Dynamic programming';
