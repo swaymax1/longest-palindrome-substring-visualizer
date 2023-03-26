@@ -60,7 +60,7 @@ export default function Provider({ children }) {
     };
 
     const run = () => {
-        if (appState.word.length == 0) return;
+        if (appState.word.length === 0) return;
         if (!appState.running) {
             updateApp({ running: true, found: [-1, -1] });
             appState.selectedAlgo(appState.word, appState.delay, callbacks);
