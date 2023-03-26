@@ -1,9 +1,7 @@
 import React, { useRef } from 'react';
 import { useProvider } from '../provider';
 import Select from 'react-select';
-import 'rc-slider/assets/index.css';
 import Slider from '@mui/material/Slider';
-
 
 export function Controls() {
     const { running, algos, run, updateApp, updateColor } = useProvider();
