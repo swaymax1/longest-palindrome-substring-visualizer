@@ -10,7 +10,7 @@ function getInitialAppState() {
         word: '',
         running: false,
         algos: [twoPointers, middleOut, dynamicProgramming],
-        selectedAlgo: bruteForce,
+        selectedAlgo: twoPointers,
     }
 }
 
