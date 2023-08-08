@@ -22,7 +22,6 @@
 
 - [React](https://reactjs.org/) with hooks
 - [Emotion](https://emotion.sh/)
-- [react-select](https://react-select.com/home)
 - [mui-slider](https://mui.com/material-ui/react-slider/)
 
 ------------
