@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/longest-palindrome-substring-visualizer/static/css/main.2bcd7082.css",
-    "main.js": "/longest-palindrome-substring-visualizer/static/js/main.91eb6972.js",
+    "main.js": "/longest-palindrome-substring-visualizer/static/js/main.11b52fdb.js",
     "index.html": "/longest-palindrome-substring-visualizer/index.html",
     "main.2bcd7082.css.map": "/longest-palindrome-substring-visualizer/static/css/main.2bcd7082.css.map",
-    "main.91eb6972.js.map": "/longest-palindrome-substring-visualizer/static/js/main.91eb6972.js.map"
+    "main.11b52fdb.js.map": "/longest-palindrome-substring-visualizer/static/js/main.11b52fdb.js.map"
   },
   "entrypoints": [
     "static/css/main.2bcd7082.css",
-    "static/js/main.91eb6972.js"
+    "static/js/main.11b52fdb.js"
   ]
 }
